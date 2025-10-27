@@ -29,7 +29,7 @@ ORDER BY poi_count DESC;
 CREATE TABLE streets_reprojected AS
 	SELECT 
 		*, 
-		ST_Transform(geom, 31468) AS geom_reprojected  
+		ST_Transform(geom, 3068) AS geom_reprojected  
 	FROM kar_streets_2019; 
 
 ALTER TABLE streets_reprojected
@@ -54,8 +54,8 @@ DROP TABLE input_points;
 
 -- 5) Zaktualizuj dane w tabeli ‘input_points’ tak, aby punkty te były w układzie współrzędnych DHDN.Berlin/Cassini
 ALTER TABLE input_points
-	ALTER COLUMN geom TYPE geometry(Point, 31468)
-	USING ST_Transform(geom, 31468)
+	ALTER COLUMN geom TYPE geometry(Point, 3068)
+	USING ST_Transform(geom, 3068)
 
 SELECT * FROM input_points;
 
@@ -70,7 +70,7 @@ WITH line_from_points AS (
 streets_node_reprojected AS (
 	SELECT
 		*,
-		ST_Transform(geom, 31468) AS geom_reprojected
+		ST_Transform(geom, 3068) AS geom_reprojected
 	FROM kar_street_node_2019
 )
 
@@ -84,8 +84,8 @@ SELECT COUNT(DISTINCT p.id) AS counted
 FROM kar_poi_table_2019 p
 JOIN "kar_land_use_A_2019" l
 	ON ST_DWithin(
-		ST_Transform(p.geom, 31468),
-		ST_Transform(l.geom, 31468),
+		ST_Transform(p.geom, 3068),
+		ST_Transform(l.geom, 3068),
 		300
 	)
 WHERE p."TYPE" = 'Sporting Goods Store' 
@@ -98,11 +98,11 @@ CREATE TABLE T2019_KAR_BRIDGES AS
 		r.id AS railway_id,
 		w.id AS water_id,
 		ST_Intersection(
-			ST_Transform(r.geom, 31468),
-			ST_Transform(w.geom, 31468)
+			ST_Transform(r.geom, 3068),
+			ST_Transform(w.geom, 3068)
 		) AS geom
 	FROM kar_railways_2019 r
 	JOIN kar_water_lines_2019 w
-	ON ST_Intersects(ST_Transform(r.geom, 31468), ST_Transform(w.geom, 31468));
+	ON ST_Intersects(ST_Transform(r.geom, 3068), ST_Transform(w.geom, 3068));
 
 SELECT * FROM t2019_kar_bridges;
