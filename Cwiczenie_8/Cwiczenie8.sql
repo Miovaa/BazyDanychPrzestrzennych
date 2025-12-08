@@ -25,7 +25,7 @@ SELECT * FROM "OS_Open_Zoomstack — national_parks";
 CREATE TABLE lake_district AS
 	SELECT *
 	FROM "OS_Open_Zoomstack — national_parks"
-	WHERE id=7
+	WHERE id=1
 
 SELECT * FROM lake_district;
 
@@ -37,3 +37,4 @@ FROM uk_250k_mosaic, lake_district;
 
 SELECT * FROM uk_lake_district;
 	
+
