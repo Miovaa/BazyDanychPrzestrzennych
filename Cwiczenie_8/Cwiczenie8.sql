@@ -36,5 +36,15 @@ SELECT ST_Clip(rast, 1, geom, true) AS rast
 FROM uk_250k_mosaic, lake_district;
 
 SELECT * FROM uk_lake_district;
-	
+
+-- 7) Wyeksportuj wyniki do pliku GeoTIFF. - wykonane z poziomu QGIS
+
+-- 9) Załaduj dane z Sentinela-2 do bazy danych - wykonane z poziomu QGIS (wtyczka PostGIS Raster Import)
+
+-- 10) Policz indeks NDWI oraz przytnij wyniki do granic Lake District - wykonane z poziomue QGIS
+-- NDWI = (B03 - B08) / (B03 + B08)
+
+-- 11) Wyeksportuj obliczony i przycięty wskaźnik NDWI do GeoTIFF. - wykonane z poziomu QGIS
+
+
 
